@@ -2,17 +2,18 @@
 
 Name:		goollie
 Version:	1.3
-Release:	%mkrel 1
+Release:	1
 Url:		http://tweeler.com/index.php?PAGE=goollie_linux
 License:	GPLv3 and CC-BY-SA
 Group:		Games/Arcade
 Summary:	Arcage game about Ollie the Oligocheata, a worm on a mission
 # http://www.tweeler.com/GoOllie_1.3_src.tar.gz
-Source:		%{oname}-%{version}.tar.bz2
+Source0:		%{oname}-%{version}.tar.bz2
 Source1:	%{oname}.png
 Patch0:		%{oname}.patch
 BuildRequires:	cmake
 BuildRequires:	libtuxcap-devel
+BuildRequires:	imagemagick
 
 %description
 Ollie the Oligocheata is a worm on a mission
@@ -38,17 +39,17 @@ Authors:
 %patch0
 
 sed -i -e "s|SetAppResourceFolder.*|SetAppResourceFolder(\"%{_datadir}/%{name}\");|g" src/main.cpp
+chmod go+r other_licenses/*
 
 %build
 %cmake
 %make
 
 %install
-%__rm -rf %{buildroot}
-%__install -s -D -m 0755 build/%{oname} %{buildroot}%{_bindir}/%{name}
+%__install -D -m 0755 build/%{oname} %{buildroot}%{_bindir}/%{name}
 %__mkdir_p %{buildroot}%{_datadir}/%{name}
-%__cp -a data/* %{buildroot}%{_datadir}/%{name}
-%__cp -a src/*.py %{buildroot}%{_datadir}/%{name}
+cp -a data/* %{buildroot}%{_datadir}/%{name}
+cp -a src/*.py %{buildroot}%{_datadir}/%{name}
 %__install -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %__mkdir_p %{buildroot}%{_datadir}/applications/
@@ -64,9 +65,6 @@ StartupNotify=true
 Categories=Game;ArcadeGame;
 EOF
 
-%clean
-%__rm -rf %{buildroot}
-
 %files
 %doc COPYING README other_licenses/
 %{_bindir}/%{name}
@@ -74,4 +72,11 @@ EOF
 %{_datadir}/%{name}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
+
+
+
+%changelog
+* Sun Mar 11 2012 Andrey Bondrov <abondrov@mandriva.org> 1.3-1
++ Revision: 784086
+- imported package goollie
 
