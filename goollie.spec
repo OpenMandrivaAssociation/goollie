@@ -2,7 +2,7 @@
 
 Name:		goollie
 Version:	1.3
-Release:	1
+Release:	2
 Url:		http://tweeler.com/index.php?PAGE=goollie_linux
 License:	GPLv3 and CC-BY-SA
 Group:		Games/Arcade
