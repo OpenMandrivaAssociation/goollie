@@ -3,7 +3,7 @@
 Name:		goollie
 Version:	1.3
 Release:	2
-Url:		http://tweeler.com/index.php?PAGE=goollie_linux
+Url:		https://tweeler.com/index.php?PAGE=goollie_linux
 License:	GPLv3 and CC-BY-SA
 Group:		Games/Arcade
 Summary:	Arcage game about Ollie the Oligocheata, a worm on a mission
